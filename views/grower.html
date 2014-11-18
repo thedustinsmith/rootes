@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+
+{% block title %}Growers{% endblock %}
+
+{% block content %}
+
+<div id="grower-list">
+  <button class="smv-add">Add Grower</button>
+</div>
+
+<script type="text/template" id="grower-list-template">
+  <ul>
+  <% _.each(obj, function (g) {  %>
+    <li data-id="<%= g.growerID %>" class="smv-item">
+      <span><%= g.name %></span>
+      <button class="smv-edit">edit</button>
+      <button class="smv-delete">delete</button>
+    </li>
+  <% }); %>
+  </ul>
+</script>
+
+<script type="text/template" id="grower-form-template">
+<form id="grower-form">
+  <table>
+    <tr><th>Name</th><td><input type="text" name="name" /></td></tr>
+    <tr><th>Address</th><td><input type="text" name="address" /></td></tr>
+    <tr><th>Phone</th><td><input type="text" name="phone" /></td></tr>
+    <tr><th>County</th><td><input type="text" name="county" /></td></tr>
+    <tr><td colspan="2"><button type="submit" id="save">Save</button><a href="#" id="cancel">Cancel</a></td></tr>
+  </table>
+</form>
+</script>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  Grower.init();
+</script>
+{% endblock %}

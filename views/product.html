@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+
+{% block title %}Growers{% endblock %}
+
+{% block content %}
+
+<div id="product-list">
+  <button id="btn-add" class="smv-add">Add Product</button>
+</div>
+
+<script type="text/template" id="product-list-template">
+  <ul>
+  <% _.each(obj, function (p) {  %>
+    <li data-id="<%= p.productID %>" class="smv-item">
+      <span><%= p.name %></span>
+      <button class="smv-edit">edit</button>
+      <button class="smv-delete">delete</button>
+    </li>
+  <% }); %>
+  </ul>
+</script>
+
+<script type="text/template" id="product-form-template">
+<form>
+  <table>
+    <tr><th>Name: </th><td><input type="text" name="name" /></td></tr>
+    <tr><th>EPA Regulation #: </th><td><input type="text" name="epaNum" /></td></tr>
+    <tr><td colspan="2">
+      <button type="submit" id="save">Save</button><a href="#" id="cancel">Cancel</a>
+    </td></tr>
+  </table>
+</form>
+</script>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  Product.init();
+</script>
+{% endblock %}
