@@ -22,11 +22,11 @@ router.post('/', function (req, res) {
     });
 });     
 
-router.put('/', function (req, res) {
+router.put('/:productid', function (req, res) {
     var product = new db.Product(req.body);
-    var data = grower.toObject();
+    var data = product.toObject();
     delete data._id;
-    db.Product.findOneAndUpdate({productID: product.productID }, data, function (err, result) {
+    db.Product.findOneAndUpdate({productID: req.params.productid }, data, function (err, result) {
         res.json(result);
     });
 });

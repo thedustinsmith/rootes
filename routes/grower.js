@@ -22,11 +22,11 @@ router.post('/', function (req, res) {
     });
 });     
 
-router.put('/', function (req, res) {
+router.put('/:growerid', function (req, res) {
     var grower = new db.Grower(req.body);
     var data = grower.toObject();
     delete data._id;
-    db.Grower.findOneAndUpdate({growerID: grower.growerID }, data, function (err, result) {
+    db.Grower.findOneAndUpdate({growerID: req.params.growerid }, data, function (err, result) {
         res.json(result);
     });
 });
