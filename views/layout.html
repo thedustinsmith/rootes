@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <link rel="favicon" href="/assets/favicon.ico" />
+  <link href='http://fonts.googleapis.com/css?family=Hind:400,600,300' rel='stylesheet' type='text/css'>
   <title>{% block title %}Rootes{% endblock %}</title>
 
   {% block head %}
@@ -10,8 +11,11 @@
   {% endblock %}
 </head>
 <body>
-  {% block content %}{% endblock %}
-
+  <div class="page-wrapper">
+    <div class="pdub-content">
+      {% block content %}{% endblock %}
+    </div>
+  </div>
   <script src="assets/js/framework.js"></script>
   <script src="assets/js/all.min.js"></script>
   {% block scripts %}{% endblock %}

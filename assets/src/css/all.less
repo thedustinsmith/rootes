@@ -1,5 +1,78 @@
 @import "mixins.less";
+@import "simplegrid.less";
+
+@bodyWidth: 600px;
+
+.grid {
+  min-width: 0;
+  max-width: @bodyWidth;
+}
+
+html,
+body {
+  height: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
 body {
-	background-color: #bad55;
+  font-family: 'Hind', sans-serif;
+  background: #fafafa;
+}
+
+input,
+select,
+textarea {
+  font-family: 'Hind', sans-serif;
+  font-size: 18px;
+}
+
+h2 {
+  font-size: 40px;
+  font-weight: 300;
+  margin: 0;
+}
+h3 {
+  font-weight: 600;
+  margin: 0;
+}
+
+.page-wrapper {
+  width: @bodyWidth;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  border-top: 0;
+  border-bottom: 0;
+  min-height: 100%;
+  background: white;
+}
+
+.pdub-content {
+  padding: 10px;
+}
+
+.control-group {
+  padding: 10px 0 20px 0;
+
+  .control-label {
+    label {
+      font-size: 13px;
+      text-transform: uppercase;
+      color: #b0b0b0;
+      font-weight: bold;
+      padding-bottom: 5px;
+    }
+  }
+}
+
+section.form-section {
+  border-bottom: 1px solid #ddd;
+  margin: 0 -10px 10px -10px;
+  padding: 0 10px;
+
+  h3 {
+    color: #555;
+    font-size: 18px;
+  }
 }
