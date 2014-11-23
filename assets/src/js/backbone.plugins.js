@@ -34,8 +34,9 @@
       var self = this;
       var data = {};
 
-      this.$('input:text, select, textarea').each(function() {
-        data[$(this).attr('name')] = $(this).val();
+      var fields = this.$(':input').serializeArray();
+      $.each(fields, function(i, field) {
+        data[field.name] = field.value;
       });
       this.model.set(data);
       if (this.model.isNew) {

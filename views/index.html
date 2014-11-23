@@ -4,43 +4,50 @@
 
 {% block content %}
 <h2>Add a new Job</h2>
+<form id="job-form" method="POST" action="/api/jobs">
 <section class="form-section">
   <h3 class="section-header">Applicator Information</h3>
   <div class="grid">
     <div class="control-group col-1-2">
       <div class="control-label">
-        <label for="job-applicator">Applicator</label>
+        <label for="applicatorID">Applicator</label>
       </div>
       <div class="controls">
-        <select name="job-applicator">
+        <select name="applicatorID">
           <option value="">-- Pick Applicator --</option>
+          {% for ap in applicators %}
+          <option value="{{ ap.applicatorID }}">{{ ap.name }}</option>
+          {% endfor %}
         </select>
       </div>
     </div>
     <div class="control-group col-1-2">
       <div class="control-label">
-        <label for="job-sprayer">Sprayer</label>
+        <label for="sprayerID">Sprayer</label>
       </div>
       <div class="controls">
-        <select name="job-sprayer">
+        <select name="sprayerID">
           <option value="">-- Pick Sprayer --</option>
+          {% for s in sprayers %}
+          <option value="{{ ap.sprayerID }}">{{ s.name }}</option>
+          {% endfor %}
         </select>
       </div>
     </div>
     <div class="control-group col-1-2">
       <div class="control-label">
-        <label for="job-ga">Gallons/Acre</label>
+        <label for="gallonsPerAcre">Gallons/Acre</label>
       </div>
       <div class="controls">
-        <input type="text" name="job-ga" />
+        <input type="text" name="gallonsPerAcre" />
       </div>
     </div>
     <div class="control-group col-1-2">
       <div class="control-label">
-        <label for="job-nozzle">Nozzle</label>
+        <label for="nozzle">Nozzle</label>
       </div>
       <div class="controls">
-        <input type="text" name="job-nozzle" />
+        <input type="text" name="nozzle" />
       </div>
     </div>
   </div>
@@ -50,20 +57,23 @@
   <div class="grid">
     <div class="control-group col-1-2">
       <div class="control-label">
-        <label for="job-grower">Grower</label>
+        <label for="growerID">Grower</label>
       </div>
       <div class="controls">
-        <select name="job-grower">
+        <select name="growerID">
           <option value="">-- Pick Grower --</option>
+          {% for g in growers %}
+          <option value="{{ g.growerID }}">{{ g.name }}</option>
+          {% endfor %}
         </select>
       </div>
     </div>
     <div class="control-group col-1-2">
       <div class="control-label">
-        <label for="job-location">Location</label>
+        <label for="locationID">Location</label>
       </div>
       <div class="controls">
-        <select name="job-location">
+        <select name="locationID">
           <option value="">-- Pick Location --</option>
         </select>
       </div>
@@ -75,79 +85,79 @@
   <div class="grid">
     <div class="control-group col-1-1">
       <div class="control-label">
-        <label for="job-date">Date</label>
+        <label for="date">Date</label>
       </div>
       <div class="controls">
-        <input type="text" name="job-date" />
+        <input type="text" name="date" />
       </div>
     </div>
     <div class="control-group col-1-2">
       <div class="control-label">
-        <label for="job-starttime">Start Time</label>
+        <label for="startTime">Start Time</label>
       </div>
       <div class="controls">
-        <input type="text" name="job-starttime" />
+        <input type="text" name="startTime" />
       </div>
     </div>
     <div class="control-group col-1-2">
       <div class="control-label">
-        <label for="job-endtime">End Time</label>
+        <label for="endTime">End Time</label>
       </div>
       <div class="controls">
-        <input type="text" name="job-endtime" />
+        <input type="text" name="endTime" />
       </div>
     </div>
     <div class="control-group col-1-1">
       <div class="control-label">
-        <label for="job-winddir">Wind Direction</label>
+        <label for="windDirection">Wind Direction</label>
       </div>
       <div class="controls">
-        <input type="radio" name="job-windir" value="North" />&nbsp;N        
-        <input type="radio" name="job-windir" value="Northeast" />&nbsp;NE
-        <input type="radio" name="job-windir" value="Northwest" />&nbsp;NW
-        <input type="radio" name="job-windir" value="East" />&nbsp;E
-        <input type="radio" name="job-windir" value="Southeast" />&nbsp;SE
-        <input type="radio" name="job-windir" value="Southwest" />&nbsp;SW
-        <input type="radio" name="job-windir" value="West" />&nbsp;W
+        <input type="radio" name="windDirection" value="North" />&nbsp;N        
+        <input type="radio" name="windDirection" value="Northeast" />&nbsp;NE
+        <input type="radio" name="windDirection" value="Northwest" />&nbsp;NW
+        <input type="radio" name="windDirection" value="East" />&nbsp;E
+        <input type="radio" name="windDirection" value="Southeast" />&nbsp;SE
+        <input type="radio" name="windDirection" value="Southwest" />&nbsp;SW
+        <input type="radio" name="windDirection" value="West" />&nbsp;W
       </div>
     </div>
     <div class="control-group col-1-1">
       <div class="control-label">
-        <label for="job-windspeed">Wind Speed</label>
+        <label for="windSpeed">Wind Speed</label>
       </div>
       <div class="controls">
-        <input type="radio" name="job-windspeed" value="0" />&nbsp;0        
-        <input type="radio" name="job-windspeed" value="1-5" />&nbsp;1-5
-        <input type="radio" name="job-windspeed" value="6-10" />&nbsp;6-10
-        <input type="radio" name="job-windspeed" value="11-15" />&nbsp;11-15
-        <input type="radio" name="job-windspeed" value="16-20" />&nbsp;16-20
-        <input type="radio" name="job-windspeed" value="21+" />&nbsp;21+
+        <input type="radio" name="windSpeed" value="0" />&nbsp;0        
+        <input type="radio" name="windSpeed" value="1-5" />&nbsp;1-5
+        <input type="radio" name="windSpeed" value="6-10" />&nbsp;6-10
+        <input type="radio" name="windSpeed" value="11-15" />&nbsp;11-15
+        <input type="radio" name="windSpeed" value="16-20" />&nbsp;16-20
+        <input type="radio" name="windSpeed" value="21+" />&nbsp;21+
       </div>
     </div>
     <div class="control-group col-1-1">
       <div class="control-label">
-        <label for="job-temperature">Temperature</label>
+        <label for="temperature">Temperature</label>
       </div>
       <div class="controls">
-        <input type="radio" name="job-temperature" value="45-50" />&nbsp;45-50
-        <input type="radio" name="job-temperature" value="51-55" />&nbsp;51-55
-        <input type="radio" name="job-temperature" value="56-60" />&nbsp;56-60
-        <input type="radio" name="job-temperature" value="61-65" />&nbsp;61-65
-        <input type="radio" name="job-temperature" value="66-70" />&nbsp;66-70
-        <input type="radio" name="job-temperature" value="71-75" />&nbsp;71-75
-        <input type="radio" name="job-temperature" value="76-80" />&nbsp;76-80
-        <input type="radio" name="job-temperature" value="81+" />&nbsp;81+
+        <input type="radio" name="temperature" value="45-50" />&nbsp;45-50
+        <input type="radio" name="temperature" value="51-55" />&nbsp;51-55
+        <input type="radio" name="temperature" value="56-60" />&nbsp;56-60
+        <input type="radio" name="temperature" value="61-65" />&nbsp;61-65
+        <input type="radio" name="temperature" value="66-70" />&nbsp;66-70
+        <input type="radio" name="temperature" value="71-75" />&nbsp;71-75
+        <input type="radio" name="temperature" value="76-80" />&nbsp;76-80
+        <input type="radio" name="temperature" value="81+" />&nbsp;81+
       </div>
     </div>
     <div class="control-group col-1-1">
       <div class="control-label">
-        <label for="job-humidty">Humidity</label>
+        <label for="humidty">Humidity</label>
       </div>
       <div class="controls">
-        <input type="radio" name="job-humidity" value="low" />&nbsp;Low
-        <input type="radio" name="job-humidity" value="medium" />&nbsp;Medium
-        <input type="radio" name="job-humidity" value="high" />&nbsp;High
-        <input type="radio" name="job-humidity" value="veryhigh" />&nbsp;Very High
+        <input type="radio" name="humidty" value="low" />&nbsp;Low
+        <input type="radio" name="humidty" value="medium" />&nbsp;Medium
+        <input type="radio" name="humidty" value="high" />&nbsp;High
+        <input type="radio" name="humidty" value="veryhigh" />&nbsp;Very High
       </div>
     </div>
   </div>
@@ -157,51 +167,54 @@
   <div class="grid">
     <div class="control-group col-1-1">
       <div class="control-label">
-        <label for="job-crop">Crop</label>
+        <label for="crop">Crop</label>
       </div>
       <div class="controls">
-        <input type="radio" name="job-crop" value="corn" />&nbsp;Corn
-        <input type="radio" name="job-crop" value="soybeans" />&nbsp;Soybeans
-        <input type="radio" name="job-crop" value="wheat" />&nbsp;Wheat
-        <input type="radio" name="job-crop" value="sorghum" />&nbsp;Sorghum
-        <input type="radio" name="job-crop" value="alfalfa" />&nbsp;Alfalfa
+        <input type="radio" name="crop" value="corn" />&nbsp;Corn
+        <input type="radio" name="crop" value="soybeans" />&nbsp;Soybeans
+        <input type="radio" name="crop" value="wheat" />&nbsp;Wheat
+        <input type="radio" name="crop" value="sorghum" />&nbsp;Sorghum
+        <input type="radio" name="crop" value="alfalfa" />&nbsp;Alfalfa
       </div>
     </div>
     <div class="control-group col-1-1">
       <div class="control-label">
-        <label for="job-applicationtype">Application Type</label>
+        <label for="applicationType">Application Type</label>
       </div>
       <div class="controls">
-        <input type="radio" name="job-applicationtype" value="earlypreplant" />&nbsp;Early Preplant
-        <input type="radio" name="job-applicationtype" value="ppi" />&nbsp;PPI
-        <input type="radio" name="job-applicationtype" value="preemerge" />&nbsp;Pre Emerge
-        <input type="radio" name="job-applicationtype" value="postemerge" />&nbsp;Post Emerge
+        <input type="radio" name="applicationType" value="earlypreplant" />&nbsp;Early Preplant
+        <input type="radio" name="applicationType" value="ppi" />&nbsp;PPI
+        <input type="radio" name="applicationType" value="preemerge" />&nbsp;Pre Emerge
+        <input type="radio" name="applicationType" value="postemerge" />&nbsp;Post Emerge
       </div>
     </div>
     <div class="control-group col-1-1">
       <div class="control-label">
-        <label for="job-cropheight">Crop Height</label>
+        <label for="cropHeight">Crop Height</label>
       </div>
       <div class="controls">
-        <input type="radio" name="job-cropheight" value="na" />&nbsp;N/A
-        <input type="radio" name="job-cropheight" value="1-3" />&nbsp;1-3
-        <input type="radio" name="job-cropheight" value="4-6" />&nbsp;4-6
-        <input type="radio" name="job-cropheight" value="7-9" />&nbsp;7-9
-        <input type="radio" name="job-cropheight" value="10-12" />&nbsp;10-12
-        <input type="radio" name="job-cropheight" value="13-15" />&nbsp;13-15
+        <input type="radio" name="cropHeight" value="na" />&nbsp;N/A
+        <input type="radio" name="cropHeight" value="1-3" />&nbsp;1-3
+        <input type="radio" name="cropHeight" value="4-6" />&nbsp;4-6
+        <input type="radio" name="cropHeight" value="7-9" />&nbsp;7-9
+        <input type="radio" name="cropHeight" value="10-12" />&nbsp;10-12
+        <input type="radio" name="cropHeight" value="13-15" />&nbsp;13-15
       </div>
     </div>
     <div class="control-group col-1-1">
       <div class="control-label">
-        <label for="job-pest">Target Pest</label>
+        <label for="targetPest">Target Pest</label>
       </div>
       <div class="controls">
-        <input type="radio" name="job-pest" value="broadleaves" />&nbsp;Broadleaves
-        <input type="radio" name="job-pest" value="grasses" />&nbsp;Grasses
-        <input type="radio" name="job-pest" value="other" />&nbsp;Other
+        <input type="radio" name="targetPest" value="broadleaves" />&nbsp;Broadleaves
+        <input type="radio" name="targetPest" value="grasses" />&nbsp;Grasses
+        <input type="radio" name="targetPest" value="other" />&nbsp;Other
         <!-- <input type="radio" name="job-pest" value="sorghum" />&nbsp;Sorghum
         <input type="radio" name="job-pest" value="alfalfa" />&nbsp;Alfalfa -->
       </div>
     </div>
   </div>
+</section>
+<button type="submit">Submit</button>
+</form>
 {% endblock %}

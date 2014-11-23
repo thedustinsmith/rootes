@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block title %}Growers{% endblock %}
+
+{% block content %}
+
+<div id="sprayer-list">
+  <button class="smv-add">Add Sprayer</button>
+</div>
+
+<script type="text/template" id="sprayer-list-template">
+  <ul>
+  <% _.each(obj, function (s) {  %>
+    <li data-id="<%= s.sprayerID %>" class="smv-item">
+      <span><%= s.name %></span>
+      <span><%= s.certID %></span>
+      <button class="smv-edit">edit</button>
+      <button class="smv-delete">delete</button>
+    </li>
+  <% }); %>
+  </ul>
+</script>
+
+<script type="text/template" id="sprayer-form-template">
+<form id="sprayer-form">
+  <table>
+    <tr><th>Name</th><td><input type="text" name="name" /></td></tr>
+    <tr><td colspan="2"><button type="submit" id="save">Save</button><a href="#" id="cancel">Cancel</a></td></tr>
+  </table>
+</form>
+</script>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  Sprayer.init();
+</script>
+{% endblock %}

@@ -57,3 +57,61 @@ var Product = {
     gCollection.fetch().done(_.bind(this.initView, this));
   }
 };
+
+var Applicator = {
+  viewstate: new Backbone.Model(),
+
+  applicatorModel: Backbone.Model.extend({
+    idAttribute: 'applicatorID',
+    urlRoot: '/api/applicators'
+  }),
+
+  initView: function () {
+    var smv = new Backbone.SimpleModelView({
+      el: "#applicator-list",
+      listTemplate: _.template($('#applicator-list-template').html()),
+      formTemplate: _.template($("#applicator-form-template").html()),
+      collection: Applicator.collection
+    });
+
+    smv.$el.on('click', '#cancel', function () { smv.trigger('view'); });
+  },
+
+  init: function () { 
+    Applicator.collection = gCollection = new Backbone.Collection([], {
+      model: this.applicatorModel
+    });
+
+    gCollection.url = '/api/applicators';
+    gCollection.fetch().done(_.bind(this.initView, this));
+  }
+};
+
+var Sprayer = {
+  viewstate: new Backbone.Model(),
+
+  sprayerModel: Backbone.Model.extend({
+    idAttribute: 'sprayerID',
+    urlRoot: '/api/sprayers'
+  }),
+
+  initView: function () {
+    var smv = new Backbone.SimpleModelView({
+      el: "#sprayer-list",
+      listTemplate: _.template($('#sprayer-list-template').html()),
+      formTemplate: _.template($("#sprayer-form-template").html()),
+      collection: Sprayer.collection
+    });
+
+    smv.$el.on('click', '#cancel', function () { smv.trigger('view'); });
+  },
+
+  init: function () { 
+    Sprayer.collection = gCollection = new Backbone.Collection([], {
+      model: this.sprayerModel
+    });
+
+    gCollection.url = '/api/sprayers';
+    gCollection.fetch().done(_.bind(this.initView, this));
+  }
+};

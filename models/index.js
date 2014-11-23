@@ -28,5 +28,8 @@ mongoose.connect('mongodb://localhost/rootes');
 
 module.exports = {
   Grower: require('./grower'),
-  Product: require('./product')
+  Product: require('./product'),
+  Applicator: require('./applicator'),
+  Sprayer: require('./sprayer'),
+  Job: require('./job')
 };
